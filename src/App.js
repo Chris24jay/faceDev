@@ -11,8 +11,13 @@ class App extends Component {
       messages: [],
       messageInput: '',
       authorInput: '',
+      edit: false,
     }
 
+  }
+
+  componentDidMount(){
+    // This is where you could put an axios request to get the messages when the screen first loads
   }
 
 
@@ -43,7 +48,7 @@ class App extends Component {
     and the second is the body object just like the JSON object
     that we build in postman
     */
-    axios.post(`http://localhost:4444/api/message`, bodyObj)
+    axios.post(`/api/message`, bodyObj)
       .then(response => {
         console.log(response);
         this.setState({
@@ -60,7 +65,7 @@ class App extends Component {
 
   // this method is invoked by the "Get Messages" button
   handleGettingMessages() {
-    axios.get(`http://localhost:4444/api/message`)
+    axios.get(`/api/message`)
       .then(response => {
         console.log('get response data', response);
 
@@ -71,14 +76,6 @@ class App extends Component {
       })
   }
 
-  handleDeleteMessage(){
-    axios.delete(`http://localhost:4444/api/message`)
-    .then((response)=>{
-      this.setState({
-        messages: response.data
-      })
-    })
-  }
 
 
 
